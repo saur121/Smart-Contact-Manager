@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::Layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Sign Up</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="my-card">
+						<h1 class="text-center">Sign Up Here</h1>
+						
+						<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert " role="alert">
+						  <p th:text="${session.message.content}"></p>
+						  <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div>
+						
+						<form th:action="@{/do_register}"  method="post" th:object="${user}">
+							<div class="form-group">
+							    <label for="name_field" class="form-label">Name</label>
+							    <input type="text" class="form-control" id="name_field" name="name" placeholder="Enter Name" th:value="${user.name}" th:classappend="${#fields.hasErrors('name')?'is-invalid':''}">
+							 	<div th:each="e : ${#fields.errors('name')}" th:text="${e}" class="invalid-feedback">
+							 		
+							 	</div>
+							 	
+							 </div>
+							 
+							 <div class="form-group">
+							    <label for="email_field" class="form-label">Email</label>
+							    <input type="text" class="form-control" id="email_field" name="email" th:value="${user.email}" placeholder="Enter Email" th:classappend="${#fields.hasErrors('email')?'is-invalid':''}">
+							 	<div th:each="e : ${#fields.errors('email')}" th:text="${e}" class="invalid-feedback">
+							 		
+							 	</div>
+							 </div>
+							 
+							  <div class="form-group">
+							    <label for="password_field" class="form-label">Password</label>
+							    <input type="password" class="form-control" id="password_field" name="password" th:value="${user.password}"  placeholder="Enter Password">
+							 </div>
+							 </br>
+							 <div class="form-group">
+							 	<textarea name="about" id="about_field"  th:value="${user.about}" cols="30" rows="10" placeholder="Enter Something yourself" class="form-control"></textarea>
+							 </div>
+							 </br>
+							 <div class="form-group form-check">
+							 	<input type="checkbox" name="agreement" class="form-check-input" id="agreement"/>
+							 	<lable for="agreement">Accept Terms and Condition</lable>
+							 </div>
+							 </br>
+							 <div class="container text-center">
+							 	<button type="submit"  class="btn bg-primary text-white">
+							 		Submit
+							 	</button>
+							 	<button type="reset" class="btn bg-warning text-white">
+							 		Reset
+							 	</button>
+							 </div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

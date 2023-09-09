@@ -1,0 +1,86 @@
+<!--
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+
+  <title>Login Page</title>
+
+</head>
+
+
+<body>
+  <div class="wrapper">
+    <form action="/signin" method="post">
+      <h2>Login</h2>
+    
+	  <div th:if="${param.error}" class="alert alert-danger custom">
+		Invalid username & Password</div>  
+
+	<div th:if="${param.logout}" class="alert alert-success custom">
+		Logout Sucessfully</div>	  
+
+        <div class="input-field">
+        <input type="email" name="username"  required>
+        <label>Enter email</label>
+      </div>
+      <div class="input-field">
+        <input type="password" name="password" required>
+        <label>Enter password</label>
+      </div>
+
+      <button type="submit">Log In</button>
+      <div class="register">
+        <p>Back to Home ? <a href="/"> Home </a></p>
+      </div>
+    </form>
+  </div>
+</body>
+</html>   -->
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::Layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Login</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="my-card">
+						<h1 class="text-center">Log In</h1>
+						
+						
+						<form th:action="@{/signin}"  method="post">
+
+							 
+							 <div class="form-group">
+							    <label for="email_field" class="form-label">Email</label>
+							    <input type="text" class="form-control" id="email_field" name="username" placeholder="Enter Email">
+
+							 </div>
+							 
+							  <div class="form-group">
+							    <label for="password_field" class="form-label">Password</label>
+							    <input type="password" class="form-control" id="password_field" name="password" placeholder="Enter Password">
+							 </div>
+
+							 <div class="container text-center">
+							 	<button type="submit"  class="btn bg-primary text-white">
+							 		Submit
+							 	</button>
+							 	<button type="reset" class="btn bg-warning text-white">
+							 		Reset
+							 	</button>
+							 </div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
+
